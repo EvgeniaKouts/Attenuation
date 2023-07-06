@@ -1,0 +1,21 @@
+ratio_ha_hb=3
+Rv=3.1
+Av=np.zeros(flux1.shape)
+
+def kappa(lamda):
+    if ((lamda>= 0.12) and (lamda<= 0.63)):
+        k=2.659*(-2.156 +1.509/lamda -0.198/(lamda**2)+0.011/(lamda**3))+Rv
+    elif ((lamda> 0.63) and (lamda<= 2.20)):
+        k=2.659*(-1.857 +1.040/lamda)+Rv
+    else:
+        k="SORRY! OUT OF WAVELENTH RANGE!"
+        
+    return k
+
+
+
+Av=(Rv/(0.4*kappa(lamda_hb)-0.4*kappa(lamda_ha)))*np.log10(flux1/(ratio_ha_hb*flux2))
+
+def intrinsic(lamda):
+    norm_int=10**(0.4*kappa(lamda)*Av/Rv)
+    return norm_int
