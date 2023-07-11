@@ -1,6 +1,6 @@
 ratio_ha_hb=3
 Rv=3.1
-Av=np.zeros(flux1.shape)
+Av=np.zeros(flux.shape)
 
 def kappa(lamda):
     if ((lamda>= 0.12) and (lamda<= 0.63)):
